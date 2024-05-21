@@ -1,0 +1,54 @@
+<div>
+    <div class="d-flex justify-content-between">
+        @if (popupMode == 'add') {
+        <h3 class="ml-4 fw-bold">Add User</h3>
+        }
+        @if (popupMode == 'edit') {
+        <h3 class="ml-4 fw-bold">Edit User</h3>
+        }
+        <mat-icon role="button" (click)="closePopup()">close</mat-icon>
+    </div>
+    <form [formGroup]="userForm">
+        <div class="d-block ml-4 w-92 mb-3">
+            <label><span class="required-field">* </span>First Name</label>
+            <div class="form-inner-field">
+                <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
+                @if (userForm.get('firstName')?.touched && userForm.get('firstName')?.hasError('required')) {
+                <span class="required-field">First Name is required</span>
+                }
+            </div>
+        </div>
+        <div class="d-block ml-4 w-92 mb-3">
+            <label><span class="required-field">* </span>Last Name</label>
+            <div class="form-inner-field">
+                <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+                @if (userForm.get('lastName')?.touched && userForm.get('lastName')?.hasError('required')) {
+                <span class="required-field">Last Name is required</span>
+                }
+            </div>
+        </div>
+        <div class="d-block ml-4 w-92 mb-3">
+            <label>Age</label>
+            <div class="form-inner-field">
+                <input type="text" class="form-control" formControlName="age" placeholder="age">
+            </div>
+        </div>
+        <div class="d-block ml-4 w-92 mb-3">
+            <label><span class="required-field">*</span>Address</label>
+            <div class="form-inner-field">
+                <input type="text" class="form-control" formControlName="address" placeholder="Address">
+                @if (userForm.get('address')?.touched && userForm.get('address')?.hasError('required')) {
+                <span class="required-field">Address is required</span>
+                }
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            @if (popupMode == 'add') {
+            <button class="btn btn-primary" (click)="saveOrAddUser()">Add</button>
+            }
+            @if(popupMode == 'edit'){
+            <button class="btn btn-primary" (click)="saveOrAddUser()">Save</button>
+            }
+        </div>
+    </form>
+</div>
